@@ -7,25 +7,41 @@ public class ComplexNumber {
         this.imaginary = imaginary;
     }
 
-    public ComplexNumber add(ComplexNumber other) {
-        return new ComplexNumber(this.real + other.real, this.imaginary + other.imaginary);
+    public double getReal() {
+        return this.real;
     }
 
-    public ComplexNumber subtract(ComplexNumber other) {
-        return new ComplexNumber(this.real - other.real, this.imaginary - other.imaginary);
+    public static ComplexNumber add(ComplexNumber first, ComplexNumber secound) {
+        return new ComplexNumber(first.real + secound.real, first.imaginary + secound.imaginary);
     }
 
-    public ComplexNumber multiply(ComplexNumber other) {
-        double realPart = this.real * other.real - this.imaginary * other.imaginary;
-        double imaginaryPart = this.real * other.imaginary + this.imaginary * other.real;
+    public static ComplexNumber subtract(ComplexNumber first, ComplexNumber secound) {
+        return new ComplexNumber(first.real - secound.real, first.imaginary - secound.imaginary);
+    }
+
+    public static ComplexNumber multiply(ComplexNumber first, ComplexNumber secound) {
+        double realPart = first.real * secound.real - first.imaginary * secound.imaginary;
+        double imaginaryPart = first.real * secound.imaginary + first.imaginary * secound.real;
         return new ComplexNumber(realPart, imaginaryPart);
     }
 
-    public ComplexNumber divide(ComplexNumber other) {
-        double denominator = other.real * other.real + other.imaginary * other.imaginary;
-        double realPart = (this.real * other.real + this.imaginary * other.imaginary) / denominator;
-        double imaginaryPart = (this.imaginary * other.real - this.real * other.imaginary) / denominator;
+    public static ComplexNumber divide(ComplexNumber first, ComplexNumber secound) {
+        double denominator = first.real * secound.real + first.imaginary * secound.imaginary;
+        double realPart = (first.real * secound.real + first.imaginary * secound.imaginary) / denominator;
+        double imaginaryPart = (first.imaginary * secound.real - first.real * secound.imaginary) / denominator;
         return new ComplexNumber(realPart, imaginaryPart);
+    }
+
+    public static ComplexNumber power(ComplexNumber base, int exponent) {
+        if (exponent < 0) { throw new RuntimeException("Can't use negative Exponent!"); }
+        if (exponent == 0) { return new ComplexNumber(1d, 1d); }
+
+        ComplexNumber result = base;
+        for (int i = 1; i < exponent; i++) {
+            result = ComplexNumber.multiply(result, base);
+        }
+
+        return result;
     }
 
     @Override

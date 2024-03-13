@@ -18,4 +18,36 @@ class Aberth {
      *  -> check if done
      * 3. Print and test
      */
+
+    private static boolean isValid(ComplexNumber[] polynomial) {
+        return true;
+    }
+
+    private static boolean checkResult() {
+        return true;
+    }
+
+    private static ComplexNumber[] aberth(ComplexNumber[] polynomial) {
+        if (isValid(polynomial)) {
+            System.err.println("Polynomial is not valid!");
+            return null;
+        }
+
+        boolean done = false;
+        do {
+
+        } while (!done);
+
+        if (checkResult()) {
+            System.out.println("Roots were found!");
+        } else {
+            System.out.println("Roots were not found or invalid!");
+        }
+        
+        return null;
+    }
+
+    public static void main(String[] args) {
+
+    }
 }

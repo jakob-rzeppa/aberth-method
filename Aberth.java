@@ -45,7 +45,36 @@ class Aberth {
     }
 
     public static ComplexNumber evaluateDerivative(ComplexNumber[] polynomial, ComplexNumber x) {
-        return null;
+        ComplexNumber result = new ComplexNumber(0, 0);
+        
+        ComplexNumber notCoefficient = new ComplexNumber(1, 0);
+        for (int i = 1; i < polynomial.length; i++) {
+            ComplexNumber extraFractorFromDerivative = new ComplexNumber(i, 0);
+            System.out.println("extraFactor: " + extraFractorFromDerivative);
+            System.out.println("NotCoefficient: " + notCoefficient);
+
+            ComplexNumber notCoefficientWithDerivativeExtraFactor = ComplexNumber.multiply(
+                extraFractorFromDerivative, 
+                notCoefficient
+            );
+            System.out.println("ExtraFactorwithnotcoe" + notCoefficientWithDerivativeExtraFactor);
+
+            ComplexNumber resultOfThisTerm = ComplexNumber.multiply(
+                polynomial[i], 
+                notCoefficientWithDerivativeExtraFactor
+            );
+            System.out.println("resultOfThisTerm: " + resultOfThisTerm);
+
+            result = ComplexNumber.add(
+                result, 
+                resultOfThisTerm
+            );
+            System.out.println(result);
+
+            notCoefficient = ComplexNumber.multiply(notCoefficient, x);
+        }
+
+        return result;
     }
 
     private static ComplexNumber[] aberth(ComplexNumber[] polynomial) {
@@ -100,6 +129,5 @@ class Aberth {
     }
 
     public static void main(String[] args) {
-        
     }
 }

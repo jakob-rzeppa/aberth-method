@@ -28,7 +28,12 @@ class Aberth {
     }
 
     private static ComplexNumber[] getStartingPoints(ComplexNumber[] polynomial) {
-        return new ComplexNumber[polynomial.length - 1];
+        //TODO Temp
+        ComplexNumber[] result = new ComplexNumber[polynomial.length - 1];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = new ComplexNumber(i, 0);
+        }
+        return result;
     }
 
     public static ComplexNumber evaluatePolynomial(ComplexNumber[] polynomial, ComplexNumber x) {

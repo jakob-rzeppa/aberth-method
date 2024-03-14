@@ -3,7 +3,7 @@ class Aberth {
      * TODO
      * 1. Checking Polynomials / Setting Params
      * 2. WHILE not finished
-     *  -> FOREACH Polynomial
+     *  -> FOREACH Root
      *   --> get p(z_i) with z_i = current approx of root
      *   --> get p'(z_i)
      *   --> get p(z_i)/p'(z_i)
@@ -27,15 +27,23 @@ class Aberth {
         return true;
     }
 
+    private static ComplexNumber[] getStartingPoints(ComplexNumber[] polynomial) {
+        return new ComplexNumber[polynomial.length - 1];
+    }
+
     private static ComplexNumber[] aberth(ComplexNumber[] polynomial) {
         if (isValid(polynomial)) {
             System.err.println("Polynomial is not valid!");
             return null;
         }
 
+        ComplexNumber[] roots = getStartingPoints(polynomial);
+
         boolean done = false;
         do {
-
+            for (int i = 0; i < roots.length; i++) {
+                //TODO
+            }
         } while (!done);
 
         if (checkResult()) {

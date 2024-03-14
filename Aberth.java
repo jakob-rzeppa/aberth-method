@@ -55,26 +55,21 @@ class Aberth {
         ComplexNumber notCoefficient = new ComplexNumber(1, 0);
         for (int i = 1; i < polynomial.length; i++) {
             ComplexNumber extraFractorFromDerivative = new ComplexNumber(i, 0);
-            System.out.println("extraFactor: " + extraFractorFromDerivative);
-            System.out.println("NotCoefficient: " + notCoefficient);
 
             ComplexNumber notCoefficientWithDerivativeExtraFactor = ComplexNumber.multiply(
                 extraFractorFromDerivative, 
                 notCoefficient
             );
-            System.out.println("ExtraFactorwithnotcoe" + notCoefficientWithDerivativeExtraFactor);
 
             ComplexNumber resultOfThisTerm = ComplexNumber.multiply(
                 polynomial[i], 
                 notCoefficientWithDerivativeExtraFactor
             );
-            System.out.println("resultOfThisTerm: " + resultOfThisTerm);
 
             result = ComplexNumber.add(
                 result, 
                 resultOfThisTerm
             );
-            System.out.println(result);
 
             notCoefficient = ComplexNumber.multiply(notCoefficient, x);
         }
@@ -91,12 +86,15 @@ class Aberth {
         ComplexNumber[] roots = getStartingPoints(polynomial);
 
         boolean done = false;
+        int counter = 0;
         do {
+            System.out.println("Counter: " + counter++);
             for (int i = 0; i < roots.length; i++) {
                 ComplexNumber y = evaluatePolynomial(polynomial, roots[i]);
                 ComplexNumber yDerivative = evaluateDerivative(polynomial, roots[i]);
 
                 ComplexNumber fraction = ComplexNumber.divide(y, yDerivative);
+                System.out.println("Fraction: " + fraction);
 
                 ComplexNumber sum = new ComplexNumber(0, 0);
                 for (int j = 0; j < roots.length; j++) {

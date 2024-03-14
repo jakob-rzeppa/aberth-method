@@ -32,7 +32,16 @@ class Aberth {
     }
 
     public static ComplexNumber evaluatePolynomial(ComplexNumber[] polynomial, ComplexNumber x) {
-        return null;
+        ComplexNumber result = new ComplexNumber(0, 0);
+        
+        ComplexNumber notCoefficient = new ComplexNumber(1, 0);
+        for (int i = 0; i < polynomial.length; i++) {
+            result = ComplexNumber.add(result, ComplexNumber.multiply(polynomial[i], notCoefficient));
+
+            notCoefficient = ComplexNumber.multiply(notCoefficient, x);
+        }
+        
+        return result;
     }
 
     public static ComplexNumber evaluateDerivative(ComplexNumber[] polynomial, ComplexNumber x) {
@@ -91,6 +100,6 @@ class Aberth {
     }
 
     public static void main(String[] args) {
-
+        
     }
 }

@@ -31,6 +31,14 @@ class Aberth {
         return new ComplexNumber[polynomial.length - 1];
     }
 
+    public static ComplexNumber evaluatePolynomial(ComplexNumber[] polynomial, ComplexNumber x) {
+        return null;
+    }
+
+    public static ComplexNumber evaluateDerivative(ComplexNumber[] polynomial, ComplexNumber x) {
+        return null;
+    }
+
     private static ComplexNumber[] aberth(ComplexNumber[] polynomial) {
         if (isValid(polynomial)) {
             System.err.println("Polynomial is not valid!");
@@ -42,7 +50,34 @@ class Aberth {
         boolean done = false;
         do {
             for (int i = 0; i < roots.length; i++) {
-                //TODO
+                ComplexNumber y = evaluatePolynomial(polynomial, roots[i]);
+                ComplexNumber yDerivative = evaluateDerivative(polynomial, roots[i]);
+
+                ComplexNumber fraction = ComplexNumber.divide(y, yDerivative);
+
+                ComplexNumber sum = new ComplexNumber(0, 0);
+                for (int j = 0; j < roots.length; j++) {
+                    if (j == i) {
+                        continue;
+                    }
+                    sum = ComplexNumber.add(
+                        sum, 
+                        ComplexNumber.divide(
+                            new ComplexNumber(1, 0), 
+                            ComplexNumber.subtract(roots[i], roots[j])));
+                }
+
+                ComplexNumber numerator = fraction;
+
+                ComplexNumber denominator = ComplexNumber.subtract(
+                    new ComplexNumber(1, 0), 
+                    ComplexNumber.multiply(fraction, sum)
+                );
+
+                roots[i] = ComplexNumber.subtract(
+                    roots[i],
+                    ComplexNumber.divide(numerator, denominator)
+                );
             }
         } while (!done);
 

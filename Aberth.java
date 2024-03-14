@@ -83,7 +83,7 @@ class Aberth {
     }
 
     private static ComplexNumber[] aberth(ComplexNumber[] polynomial) {
-        if (isValid(polynomial)) {
+        if (!isValid(polynomial)) {
             System.err.println("Polynomial is not valid!");
             return null;
         }
@@ -113,7 +113,7 @@ class Aberth {
                 ComplexNumber numerator = fraction;
 
                 ComplexNumber denominator = ComplexNumber.subtract(
-                    new ComplexNumber(1, 0), 
+                    new ComplexNumber(1, 0),
                     ComplexNumber.multiply(fraction, sum)
                 );
 
@@ -134,5 +134,11 @@ class Aberth {
     }
 
     public static void main(String[] args) {
+        ComplexNumber[] p = new ComplexNumber[] {
+            new ComplexNumber(-1, 0),
+            new ComplexNumber(0, 0),
+            new ComplexNumber(1, 0),
+        };
+        aberth(p);
     }
 }

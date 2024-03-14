@@ -27,6 +27,11 @@ public class ComplexNumber {
 
     public static ComplexNumber divide(ComplexNumber first, ComplexNumber secound) {
         double denominator = first.real * secound.real + first.imaginary * secound.imaginary;
+
+        if (denominator == 0d) {
+            throw new RuntimeException("cant devide by 0");
+        }
+
         double realPart = (first.real * secound.real + first.imaginary * secound.imaginary) / denominator;
         double imaginaryPart = (first.imaginary * secound.real - first.real * secound.imaginary) / denominator;
         return new ComplexNumber(realPart, imaginaryPart);

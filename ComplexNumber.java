@@ -19,6 +19,10 @@ public class ComplexNumber {
         }
     }
 
+    public double getAbsoluteValue() {
+        return Math.sqrt(real * real + imaginary * imaginary);
+    }
+
     public static ComplexNumber add(ComplexNumber first, ComplexNumber secound) {
         return new ComplexNumber(first.real + secound.real, first.imaginary + secound.imaginary);
     }

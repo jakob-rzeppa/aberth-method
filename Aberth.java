@@ -70,16 +70,15 @@ class Aberth {
         
         ComplexNumber notCoefficient = new ComplexNumber(1, 0);
         for (int i = 1; i < polynomial.length; i++) {
-            ComplexNumber extraFractorFromDerivative = new ComplexNumber(i, 0);
-
-            ComplexNumber notCoefficientWithDerivativeExtraFactor = ComplexNumber.multiply(
-                extraFractorFromDerivative, 
-                notCoefficient
-            );
 
             ComplexNumber resultOfThisTerm = ComplexNumber.multiply(
                 polynomial[i], 
-                notCoefficientWithDerivativeExtraFactor
+                notCoefficient
+            );
+
+            resultOfThisTerm = ComplexNumber.multiply(
+                i, 
+                resultOfThisTerm
             );
 
             result = ComplexNumber.add(
@@ -149,10 +148,12 @@ class Aberth {
 
     public static void main(String[] args) {
         double[] p = new double[] {
-            0,
-            0,
-            1
+            7,
+            1,
+            1,
+            8,
+            -4
         };
-        aberth(p);
+        System.out.println(evaluatePolynomial(p, new ComplexNumber(4, 0)));
     }
 }

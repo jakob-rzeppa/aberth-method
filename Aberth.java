@@ -19,7 +19,7 @@ class Aberth {
      * 3. Print and test
      */
 
-    private static boolean isValid(double[] polynomial) {
+    private static boolean isValid(Polynomial polynomial) {
         return true;
     }
 
@@ -27,79 +27,21 @@ class Aberth {
         return true;
     }
 
-    private static ComplexNumber[] getStartingPoints(double[] polynomial) {
-        int degree = polynomial.length - 1;
-
-        double t1 = (polynomial[1] == 0) ? 1 : polynomial[1];
-        double t2 = (polynomial[degree] == 0) ? 1: polynomial[degree];
-
-        double radius = Math.abs((degree * polynomial[0]) / (2 * t1)) + Math.abs(polynomial[degree - 1] / (2 * degree * t2));
-        double theta = 2 * Math.PI / degree;
-        double offset = Math.PI / (2 * degree);
-        ComplexNumber[] roots = new ComplexNumber[polynomial.length - 1];
-
-        for (int i = 0; i < degree; i++) {
-            roots[i] = new ComplexNumber(radius * Math.cos(i * theta + offset), radius * Math.sin(i * theta + offset));
-        }
-        System.out.println();
-        return roots;
-    }
-
-    public static ComplexNumber evaluatePolynomial(double[] polynomial, ComplexNumber x) {
-        ComplexNumber result = new ComplexNumber(0, 0);
-        
-        ComplexNumber notCoefficient = new ComplexNumber(1, 0);
-        for (int i = 0; i < polynomial.length; i++) {
-            result = ComplexNumber.add(result, ComplexNumber.multiply(polynomial[i], notCoefficient));
-
-            notCoefficient = ComplexNumber.multiply(notCoefficient, x);
-        }
-        
-        return result;
-    }
-
-    public static ComplexNumber evaluateDerivative(double[] polynomial, ComplexNumber x) {
-        ComplexNumber result = new ComplexNumber(0, 0);
-        
-        ComplexNumber notCoefficient = new ComplexNumber(1, 0);
-        for (int i = 1; i < polynomial.length; i++) {
-
-            ComplexNumber resultOfThisTerm = ComplexNumber.multiply(
-                polynomial[i], 
-                notCoefficient
-            );
-
-            resultOfThisTerm = ComplexNumber.multiply(
-                i, 
-                resultOfThisTerm
-            );
-
-            result = ComplexNumber.add(
-                result, 
-                resultOfThisTerm
-            );
-
-            notCoefficient = ComplexNumber.multiply(notCoefficient, x);
-        }
-
-        return result;
-    }
-
-    private static ComplexNumber[] aberth(double[] polynomial) {
+    private static ComplexNumber[] aberth(Polynomial polynomial) {
         if (!isValid(polynomial)) {
             System.err.println("Polynomial is not valid!");
             return null;
         }
 
-        ComplexNumber[] roots = getStartingPoints(polynomial);
+        ComplexNumber[] roots = polynomial.getStartingPoints();
 
         boolean done = false;
         int counter = 0;
         do {
             System.out.println("Counter: " + counter++);
             for (int i = 0; i < roots.length; i++) {
-                ComplexNumber y = evaluatePolynomial(polynomial, roots[i]);
-                ComplexNumber yDerivative = evaluateDerivative(polynomial, roots[i]);
+                ComplexNumber y = polynomial.evaluatePolynomial(roots[i]);
+                ComplexNumber yDerivative = polynomial.evaluateDerivative(roots[i]);
 
                 ComplexNumber fraction = ComplexNumber.divide(y, yDerivative);
                 System.out.println("Fraction: " + fraction);
@@ -140,12 +82,13 @@ class Aberth {
     }
 
     public static void main(String[] args) {
-        double[] p = new double[] {
+        double[] d = new double[] {
             7,
             1,
             1,
             8,
             -4
         };
+        Polynomial p = new Polynomial(d);
     }
 }

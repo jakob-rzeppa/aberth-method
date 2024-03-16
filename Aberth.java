@@ -19,7 +19,7 @@ class Aberth {
      * 3. Print and test
      */
 
-    private static boolean isValid(ComplexNumber[] polynomial) {
+    private static boolean isValid(double[] polynomial) {
         return true;
     }
 
@@ -27,7 +27,7 @@ class Aberth {
         return true;
     }
 
-    private static ComplexNumber[] getStartingPoints(ComplexNumber[] polynomial) {
+    private static ComplexNumber[] getStartingPoints(double[] polynomial) {
         //TODO Temp
         ComplexNumber[] result = new ComplexNumber[polynomial.length - 1];
         for (int i = 0; i < result.length; i++) {
@@ -52,7 +52,7 @@ class Aberth {
         return roots;*/
     }
 
-    public static ComplexNumber evaluatePolynomial(ComplexNumber[] polynomial, ComplexNumber x) {
+    public static ComplexNumber evaluatePolynomial(double[] polynomial, ComplexNumber x) {
         ComplexNumber result = new ComplexNumber(0, 0);
         
         ComplexNumber notCoefficient = new ComplexNumber(1, 0);
@@ -65,7 +65,7 @@ class Aberth {
         return result;
     }
 
-    public static ComplexNumber evaluateDerivative(ComplexNumber[] polynomial, ComplexNumber x) {
+    public static ComplexNumber evaluateDerivative(double[] polynomial, ComplexNumber x) {
         ComplexNumber result = new ComplexNumber(0, 0);
         
         ComplexNumber notCoefficient = new ComplexNumber(1, 0);
@@ -93,7 +93,7 @@ class Aberth {
         return result;
     }
 
-    private static ComplexNumber[] aberth(ComplexNumber[] polynomial) {
+    private static ComplexNumber[] aberth(double[] polynomial) {
         if (!isValid(polynomial)) {
             System.err.println("Polynomial is not valid!");
             return null;
@@ -148,10 +148,10 @@ class Aberth {
     }
 
     public static void main(String[] args) {
-        ComplexNumber[] p = new ComplexNumber[] {
-            new ComplexNumber(-1, 0),
-            new ComplexNumber(0, 0),
-            new ComplexNumber(1, 0),
+        double[] p = new double[] {
+            0,
+            0,
+            1
         };
         aberth(p);
     }

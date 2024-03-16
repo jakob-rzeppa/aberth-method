@@ -27,6 +27,10 @@ public class ComplexNumber {
         return new ComplexNumber(first.real - secound.real, first.imaginary - secound.imaginary);
     }
 
+    public static ComplexNumber multiply(double first, ComplexNumber secound) {
+        return ComplexNumber.multiply(new ComplexNumber(first, 0), secound);
+    }
+
     public static ComplexNumber multiply(ComplexNumber first, ComplexNumber secound) {
         double realPart = first.real * secound.real - first.imaginary * secound.imaginary;
         double imaginaryPart = first.real * secound.imaginary + first.imaginary * secound.real;

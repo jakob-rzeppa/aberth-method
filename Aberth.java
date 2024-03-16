@@ -135,7 +135,7 @@ class Aberth {
     }
 
     public static void main(String[] args) {
-        
+        //TODO Input
         Polynomial p = new Polynomial(6);
         aberth(p, 0.0001);
     }

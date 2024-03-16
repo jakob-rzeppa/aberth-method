@@ -67,6 +67,8 @@ public class ComplexNumber {
 
     @Override
     public String toString() {
-        return "(" + real + " + " + imaginary + "i)";
+        String realDisplay = String.format("%.4f", real).substring(0, Math.min(String.format("%.4f", real).length(), 5));
+        String imaginaryDisplay = String.format("%.4f", imaginary).substring(0, Math.min(String.format("%.4f", imaginary).length(), 5));
+        return "(" + realDisplay + " + " + imaginaryDisplay + "i)";
     }
 }

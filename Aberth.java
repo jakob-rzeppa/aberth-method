@@ -36,9 +36,6 @@ class Aberth {
         ComplexNumber y = polynomial.evaluatePolynomial(roots[currentIndex]);
         ComplexNumber yDerivative = polynomial.evaluateDerivative(roots[currentIndex]);
 
-        System.out.println(y);
-        System.out.println(yDerivative);
-
         ComplexNumber fraction = ComplexNumber.divide(y, yDerivative);
 
         ComplexNumber sum = new ComplexNumber(0, 0);
@@ -129,7 +126,6 @@ class Aberth {
             1
         };
         Polynomial p = new Polynomial(d);
-        aberth(p, 0.001);
-        System.out.println(p);
+        aberth(p, 0.00001);
     }
 }

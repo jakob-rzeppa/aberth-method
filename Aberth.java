@@ -28,28 +28,21 @@ class Aberth {
     }
 
     private static ComplexNumber[] getStartingPoints(double[] polynomial) {
-        //TODO Temp
-        ComplexNumber[] result = new ComplexNumber[polynomial.length - 1];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = new ComplexNumber(i, 0);
-        }
-        return result;
+        int degree = polynomial.length - 1;
 
-        /*double t1 = (polynomial[1].isNull()) ? 1 : p.coefficients[1];
-        double t2 = (p.coefficients[p.degree] == 0) ? 1: p.coefficients[p.degree];
+        double t1 = (polynomial[1] == 0) ? 1 : polynomial[1];
+        double t2 = (polynomial[degree] == 0) ? 1: polynomial[degree];
 
-        double radius = Math.abs((p.degree * p.coefficients[0]) / (2 * t1)) + Math.abs(p.coefficients[p.degree - 1] / (2 * p.degree * t2));
-        double theta = 2 * Math.PI / p.degree;
-        double offset = Math.PI / (2 * p.degree);
+        double radius = Math.abs((degree * polynomial[0]) / (2 * t1)) + Math.abs(polynomial[degree - 1] / (2 * degree * t2));
+        double theta = 2 * Math.PI / degree;
+        double offset = Math.PI / (2 * degree);
         ComplexNumber[] roots = new ComplexNumber[polynomial.length - 1];
 
-        System.out.println("iteration: 0");
-        for (int i = 0; i < p.degree; i++) {
-            roots[i] = new Complex(radius * Math.cos(i * theta + offset), radius * Math.sin(i * theta + offset));
-            System.out.println("i = " + i + ": " + roots[i].round(accuracyDecimalPlaces));
+        for (int i = 0; i < degree; i++) {
+            roots[i] = new ComplexNumber(radius * Math.cos(i * theta + offset), radius * Math.sin(i * theta + offset));
         }
         System.out.println();
-        return roots;*/
+        return roots;
     }
 
     public static ComplexNumber evaluatePolynomial(double[] polynomial, ComplexNumber x) {
@@ -154,6 +147,5 @@ class Aberth {
             8,
             -4
         };
-        System.out.println(evaluatePolynomial(p, new ComplexNumber(4, 0)));
     }
 }

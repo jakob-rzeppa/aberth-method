@@ -20,6 +20,9 @@ class Aberth {
      */
 
     private static boolean isValid(Polynomial polynomial) {
+        if (polynomial.getCoefficients().length >= 1) {
+            return false;
+        }
         return true;
     }
 
@@ -97,7 +100,7 @@ class Aberth {
         int counter = 0;
 
         // until accurate enough
-        do {
+        while (!done && counter <= 100) {
 
             // For every root
             for (int i = 0; i < roots.length; i++) {
@@ -116,12 +119,16 @@ class Aberth {
             }
 
             done = isAccurrateEnough(corrections, accuracy);
-        } while (!done && counter <= 100);
+        }
 
         System.out.println();
         System.out.println("Test:");
         for (ComplexNumber root : roots) {
             System.out.println("p(" + root + ") = " + polynomial.evaluatePolynomial(root));
+        }
+
+        if (counter >= 100) {
+            System.out.println(" ----------- FAILED ---------- ");
         }
         
         return roots;
@@ -129,7 +136,7 @@ class Aberth {
 
     public static void main(String[] args) {
         
-        Polynomial p = new Polynomial(3,2,-4,3,-9,6);
+        Polynomial p = new Polynomial(6);
         aberth(p, 0.0001);
     }
 }

@@ -12,6 +12,10 @@ public class Polynomial {
         }
     }
 
+    public double[] getCoefficients() {
+        return coefficients.clone();
+    }
+
     public ComplexNumber[] getStartingPoints() {
         int degree = coefficients.length - 1;
 

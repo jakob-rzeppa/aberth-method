@@ -54,8 +54,12 @@ public class ComplexNumber {
     }
 
     public static ComplexNumber power(ComplexNumber base, int exponent) {
-        if (exponent < 0) { throw new RuntimeException("Can't use negative Exponent!"); }
-        if (exponent == 0) { return new ComplexNumber(1d, 1d); }
+        if (exponent < 0) {
+            throw new RuntimeException("Can't use negative Exponent!");
+        }
+        if (exponent == 0) {
+            return new ComplexNumber(1d, 1d);
+        }
 
         ComplexNumber result = base;
         for (int i = 1; i < exponent; i++) {
@@ -67,8 +71,10 @@ public class ComplexNumber {
 
     @Override
     public String toString() {
-        String realDisplay = String.format("%.4f", real).substring(0, Math.min(String.format("%.4f", real).length(), 5));
-        String imaginaryDisplay = String.format("%.4f", imaginary).substring(0, Math.min(String.format("%.4f", imaginary).length(), 5));
+        String realDisplay = String.format("%.4f", real).substring(0,
+                Math.min(String.format("%.4f", real).length(), 5));
+        String imaginaryDisplay = String.format("%.4f", imaginary).substring(0,
+                Math.min(String.format("%.4f", imaginary).length(), 5));
         return "(" + realDisplay + " + " + imaginaryDisplay + "i)";
     }
 }

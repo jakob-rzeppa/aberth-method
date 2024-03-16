@@ -32,37 +32,34 @@ public class Polynomial {
 
     public ComplexNumber evaluatePolynomial(ComplexNumber x) {
         ComplexNumber result = new ComplexNumber(0, 0);
-        
+
         ComplexNumber notCoefficient = new ComplexNumber(1, 0);
         for (int i = 0; i < coefficients.length; i++) {
             result = ComplexNumber.add(result, ComplexNumber.multiply(coefficients[i], notCoefficient));
 
             notCoefficient = ComplexNumber.multiply(notCoefficient, x);
         }
-        
+
         return result;
     }
 
     public ComplexNumber evaluateDerivative(ComplexNumber x) {
         ComplexNumber result = new ComplexNumber(0, 0);
-        
+
         ComplexNumber notCoefficient = new ComplexNumber(1, 0);
         for (int i = 1; i < coefficients.length; i++) {
 
             ComplexNumber resultOfThisTerm = ComplexNumber.multiply(
-                coefficients[i], 
-                notCoefficient
-            );
+                    coefficients[i],
+                    notCoefficient);
 
             resultOfThisTerm = ComplexNumber.multiply(
-                i, 
-                resultOfThisTerm
-            );
+                    i,
+                    resultOfThisTerm);
 
             result = ComplexNumber.add(
-                result, 
-                resultOfThisTerm
-            );
+                    result,
+                    resultOfThisTerm);
 
             notCoefficient = ComplexNumber.multiply(notCoefficient, x);
         }
@@ -89,11 +86,11 @@ public class Polynomial {
                     sb.append("-");
                     coefficient = -coefficient;
                 }
-                
+
                 if (Math.abs(coefficient) != 1 || i == 0) {
                     sb.append(coefficient);
                 }
-                
+
                 if (i > 0) {
                     sb.append("x");
                     if (i > 1) {

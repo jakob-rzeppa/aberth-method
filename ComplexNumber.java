@@ -11,6 +11,14 @@ public class ComplexNumber {
         return this.real;
     }
 
+    public boolean isNull() {
+        if (real == 0 && imaginary == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static ComplexNumber add(ComplexNumber first, ComplexNumber secound) {
         return new ComplexNumber(first.real + secound.real, first.imaginary + secound.imaginary);
     }

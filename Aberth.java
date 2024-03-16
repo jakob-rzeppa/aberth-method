@@ -34,6 +34,22 @@ class Aberth {
             result[i] = new ComplexNumber(i, 0);
         }
         return result;
+
+        /*double t1 = (polynomial[1].isNull()) ? 1 : p.coefficients[1];
+        double t2 = (p.coefficients[p.degree] == 0) ? 1: p.coefficients[p.degree];
+
+        double radius = Math.abs((p.degree * p.coefficients[0]) / (2 * t1)) + Math.abs(p.coefficients[p.degree - 1] / (2 * p.degree * t2));
+        double theta = 2 * Math.PI / p.degree;
+        double offset = Math.PI / (2 * p.degree);
+        ComplexNumber[] roots = new ComplexNumber[polynomial.length - 1];
+
+        System.out.println("iteration: 0");
+        for (int i = 0; i < p.degree; i++) {
+            roots[i] = new Complex(radius * Math.cos(i * theta + offset), radius * Math.sin(i * theta + offset));
+            System.out.println("i = " + i + ": " + roots[i].round(accuracyDecimalPlaces));
+        }
+        System.out.println();
+        return roots;*/
     }
 
     public static ComplexNumber evaluatePolynomial(ComplexNumber[] polynomial, ComplexNumber x) {

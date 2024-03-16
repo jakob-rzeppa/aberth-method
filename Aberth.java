@@ -36,6 +36,9 @@ class Aberth {
         ComplexNumber y = polynomial.evaluatePolynomial(roots[currentIndex]);
         ComplexNumber yDerivative = polynomial.evaluateDerivative(roots[currentIndex]);
 
+        System.out.println(y);
+        System.out.println(yDerivative);
+
         ComplexNumber fraction = ComplexNumber.divide(y, yDerivative);
 
         ComplexNumber sum = new ComplexNumber(0, 0);
@@ -43,11 +46,17 @@ class Aberth {
             if (i == currentIndex) {
                 continue;
             }
+
+            ComplexNumber fractionInSum = ComplexNumber.divide(
+                new ComplexNumber(1, 0), 
+                ComplexNumber.subtract(roots[currentIndex], 
+                roots[i]
+            ));
+
             sum = ComplexNumber.add(
                 sum, 
-                ComplexNumber.divide(
-                    new ComplexNumber(1, 0), 
-                    ComplexNumber.subtract(roots[currentIndex], roots[i])));
+                fractionInSum
+            );
         }
 
         ComplexNumber numerator = fraction;
@@ -73,6 +82,11 @@ class Aberth {
 
         ComplexNumber[] roots = polynomial.getStartingPoints();
 
+        System.out.println("Starting Points: ");
+        for (ComplexNumber root : roots) {
+            System.out.println(root);
+        }
+
         ComplexNumber[] corrections = new ComplexNumber[roots.length];
         boolean done = false;
         int counter = 0;
@@ -81,7 +95,6 @@ class Aberth {
         do {
             System.out.println();
             System.out.println("Counter: " + counter++);
-
 
             // For every root
             for (int i = 0; i < roots.length; i++) {
@@ -111,13 +124,12 @@ class Aberth {
 
     public static void main(String[] args) {
         double[] d = new double[] {
-            7,
-            1,
-            1,
-            8,
+            -1,
+            0,
             1
         };
         Polynomial p = new Polynomial(d);
         aberth(p, 0.001);
+        System.out.println(p);
     }
 }

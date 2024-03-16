@@ -23,11 +23,11 @@ class Aberth {
         return true;
     }
 
-    private static boolean checkResult() {
-        return true;
+    private static boolean isAccurrateEnough(ComplexNumber[] corrections) {
+        return false;
     }
 
-    private static ComplexNumber[] aberth(Polynomial polynomial) {
+    private static ComplexNumber[] aberth(Polynomial polynomial, ComplexNumber accuracy) {
         if (!isValid(polynomial)) {
             System.err.println("Polynomial is not valid!");
             return null;
@@ -35,10 +35,16 @@ class Aberth {
 
         ComplexNumber[] roots = polynomial.getStartingPoints();
 
+        ComplexNumber[] corrections = new ComplexNumber[roots.length];
         boolean done = false;
         int counter = 0;
+
+        // until accurate enough
         do {
             System.out.println("Counter: " + counter++);
+
+
+            // For every root
             for (int i = 0; i < roots.length; i++) {
                 ComplexNumber y = polynomial.evaluatePolynomial(roots[i]);
                 ComplexNumber yDerivative = polynomial.evaluateDerivative(roots[i]);
@@ -65,18 +71,23 @@ class Aberth {
                     ComplexNumber.multiply(fraction, sum)
                 );
 
+                corrections[i] = ComplexNumber.divide(
+                    numerator,
+                    denominator
+                );
+
                 roots[i] = ComplexNumber.subtract(
                     roots[i],
-                    ComplexNumber.divide(numerator, denominator)
+                    corrections[i]
                 );
             }
-        } while (!done);
 
-        if (checkResult()) {
-            System.out.println("Roots were found!");
-        } else {
-            System.out.println("Roots were not found or invalid!");
-        }
+            if (isAccurrateEnough(corrections)) {
+                System.out.println("Roots were found!");
+            } else {
+                System.out.println("Roots were not found or invalid!");
+            }
+        } while (!done);
         
         return null;
     }
@@ -90,5 +101,6 @@ class Aberth {
             -4
         };
         Polynomial p = new Polynomial(d);
+        aberth(p, new ComplexNumber(0.001, 0.001));
     }
 }

@@ -103,11 +103,6 @@ class Aberth {
                 );
             }
 
-            System.out.println("Corrections: ");
-            for (ComplexNumber correction : corrections) {
-                System.out.println(correction);
-            }
-
             System.out.println("Roots: ");
             for (ComplexNumber root : roots) {
                 System.out.println(root);
@@ -121,11 +116,17 @@ class Aberth {
 
     public static void main(String[] args) {
         double[] d = new double[] {
-            -1,
+            -16,
+            0,
+            0,
+            0,
+            15,
+            0,
+            0,
             0,
             1
         };
         Polynomial p = new Polynomial(d);
-        aberth(p, 0.00001);
+        aberth(p, 0.0001);
     }
 }

@@ -8,19 +8,15 @@ public class Polynomial {
     public ComplexNumber[] getStartingPoints() {
         int degree = coefficients.length - 1;
 
-        double t1 = (coefficients[1] == 0) ? 1 : coefficients[1];
-        double t2 = (coefficients[degree] == 0) ? 1: coefficients[degree];
-
-        double radius = Math.abs((degree * coefficients[0]) / (2 * t1)) + Math.abs(coefficients[degree - 1] / (2 * degree * t2));
         double theta = 2 * Math.PI / degree;
         double offset = Math.PI / (2 * degree);
-        ComplexNumber[] roots = new ComplexNumber[coefficients.length - 1];
-
-        for (int i = 0; i < degree; i++) {
-            roots[i] = new ComplexNumber(radius * Math.cos(i * theta + offset), radius * Math.sin(i * theta + offset));
+        ComplexNumber[] guesses = new ComplexNumber[degree];
+        for (int k = 0; k < degree; k++) {
+            double realPart = Math.cos(k * theta + offset);
+            double imagPart = Math.sin(k * theta + offset);
+            guesses[k] = new ComplexNumber(realPart, imagPart);
         }
-        System.out.println();
-        return roots;
+        return guesses;
     }
 
     public ComplexNumber evaluatePolynomial(ComplexNumber x) {

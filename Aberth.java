@@ -77,8 +77,16 @@ class Aberth {
             return null;
         }
 
+        System.out.println(polynomial);
+
+        polynomial.norm();
+        System.out.println();
+        System.out.println("Normalized: ");
+        System.out.println(polynomial);
+
         ComplexNumber[] roots = polynomial.getStartingPoints();
 
+        System.out.println();
         System.out.println("Starting Points: ");
         for (ComplexNumber root : roots) {
             System.out.println(root);
@@ -90,8 +98,6 @@ class Aberth {
 
         // until accurate enough
         do {
-            System.out.println();
-            System.out.println("Counter: " + counter++);
 
             // For every root
             for (int i = 0; i < roots.length; i++) {
@@ -103,30 +109,27 @@ class Aberth {
                 );
             }
 
-            System.out.println("Roots: ");
+            System.out.println();
+            System.out.println("Counter: " + counter++);
             for (ComplexNumber root : roots) {
                 System.out.println(root);
             }
 
             done = isAccurrateEnough(corrections, accuracy);
         } while (!done && counter <= 100);
+
+        System.out.println();
+        System.out.println("Test:");
+        for (ComplexNumber root : roots) {
+            System.out.println("p(" + root + ") = " + polynomial.evaluatePolynomial(root));
+        }
         
-        return null;
+        return roots;
     }
 
     public static void main(String[] args) {
-        double[] d = new double[] {
-            -16,
-            0,
-            0,
-            0,
-            15,
-            0,
-            0,
-            0,
-            1
-        };
-        Polynomial p = new Polynomial(d);
+        
+        Polynomial p = new Polynomial(3,2,-4,3,-9,6);
         aberth(p, 0.0001);
     }
 }

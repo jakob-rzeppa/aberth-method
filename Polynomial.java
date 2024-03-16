@@ -1,8 +1,15 @@
 public class Polynomial {
     private double[] coefficients;
 
-    public Polynomial(double [] coefficients) {
+    public Polynomial(double... coefficients) {
         this.coefficients = coefficients;
+    }
+
+    public void norm() {
+        double factor = 1 / coefficients[coefficients.length - 1];
+        for (int i = 0; i < coefficients.length; i++) {
+            coefficients[i] = coefficients[i] * factor;
+        }
     }
 
     public ComplexNumber[] getStartingPoints() {

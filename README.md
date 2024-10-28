@@ -1,1 +1,1 @@
-Implementation of the Aberth-Method for finding the roots of a polynomial. This Project is created in succession to my implementation of the Weierstrass-Iteration and a faster and more reliable way to find the roots of a polynomial than the Weierstrass-Iteration. 
+Implementation of the Aberth-Method for finding the roots of a polynomial. This Project is created in succession to my implementation of the Weierstrass-Iteration (https://github.com/jakob-rzeppa/Facharbeit) and a faster and more reliable way to find the roots of a polynomial than the Weierstrass-Iteration. 
